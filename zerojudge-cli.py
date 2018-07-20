@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import requests
+import re
 from bs4 import BeautifulSoup
 import colorTable as cT
 import getpass
@@ -55,6 +56,8 @@ def dashBoard(flag):
     for i in soup.find_all('tr',attrs={'solutionid':True}):
         if cnt==5:
             break
+        if cnt>0:
+            print(cT.bcolors.BOLD+cT.bcolors.FAIL+'-'*35+cT.bcolors.ENDC)
         solveId=i.find('td',id='solutionid').text
         userId=[]
         userId.append(i.find('a',attrs={'title':True}).text)
@@ -68,9 +71,11 @@ def dashBoard(flag):
         resp.append(i.find_all('span',id='summary')[1].text)
         if userId[0]==user['account']:
             print(cT.bcolors.UNDERLINE+cT.bcolors.OKGREEN)
-            print(solveId,userId[0],userId[1],pr[0],pr[1],cT.bcolors.ENDC)
+            print(solveId,userId[0],userId[1])
+            print(pr[0],pr[1],cT.bcolors.ENDC, end='')
         else:
-            print(solveId,userId[0],userId[1],pr[0],pr[1])
+            print(solveId,userId[0], userId[1])
+            print(pr[0],pr[1], end='')
         print(cT.bcolors.BOLD)
         str1=''.join(list(filter(str.isalnum,resp[0])))
         if str1=='AC':
