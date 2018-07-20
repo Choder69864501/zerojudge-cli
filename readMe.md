@@ -7,7 +7,7 @@ ___
 ___ 
 
 ## Install
-下載，然後安裝python的要用的pacakge:requests,beautifulSoup4,html5lib,webbrowser
+下載，然後安裝python的要用的pacakge:requests,beautifulSoup4,html5lib,webbrowser,lxml
 
 ____
 
