@@ -94,21 +94,42 @@ def showProblem(prob):
         return 1
     webbrowser.open_new_tab(qurl+prob)
     return 0
-while Login()==1:
-    print(cT.bcolors.BOLD+cT.bcolors.FAIL+'Login failed ,try again'+cT.bcolors.ENDC)
+
+conform_login=input("Login to access more features? Y/N :")
+if conform_login=='Y' or conform_login=='y':
+    while Login()==1:
+        print(cT.bcolors.BOLD+cT.bcolors.FAIL+'Login failed ,try again'+cT.bcolors.ENDC)
+        
+
 while True:
     c=input(cT.bcolors.OKBLUE+cT.bcolors.BOLD+'>> '+cT.bcolors.ENDC) 
     if c=='h':
         Help()
     elif c=='submit' or c=='s':
-        submitCode()
+        if conform_login=='Y' or conform_login=='y':
+            submitCode()
+        else:
+            print("Not login yet!")
+            conform_login=input("Login? Y/N :")
+            if conform_login=='Y' or conform_login=='y':
+                while Login()==1:
+                    print(cT.bcolors.BOLD+cT.bcolors.FAIL+'Login failed ,try again'+cT.bcolors.ENDC)
+    
     elif c=='dashboard' or c=='d':
-        dashBoard(None)
+        if conform_login=='Y' or conform_login=='y':
+            dashBoard(None)
+        else:
+            print("Not login yet!")
+            conform_login=input("Login? Y/N :")
+            if conform_login=='Y' or conform_login=='y':
+                while Login()==1:
+                    print(cT.bcolors.BOLD+cT.bcolors.FAIL+'Login failed ,try again'+cT.bcolors.ENDC)
+    
     elif c=='showproblem' or c=='sp':
         showProblem(input('Problem: '))
-    elif c=='quit' or c=='exit': 
+    elif c=='quit' or c=='exit' or c=='q': 
         break 
     else:
-        print('Unknown command , type h for help')
+        print('Unknown conform_login , type h for help')
         continue
 session.get(logouturl,headers=headers)
