@@ -5,6 +5,7 @@ import colorTable as cT
 import getpass
 import webbrowser
 import colorama
+colorama.init()
 zerjudgecli='''\
  _____                     _           __                      ___ 
 /__  /  ___  _________    (_)_  ______/ /___ ____        _____/ (_)
@@ -23,7 +24,6 @@ resurl='https://zerojudge.tw/Submissions'
 qurl='https://zerojudge.tw/ShowProblem?problemid='
 user={'token':''}
 purl='https://zerojudge.tw/Solution.api?action=SubmitCode&'
-colorama.init()
 session=requests.session()
 def inputTry(out):
     try:
