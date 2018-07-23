@@ -7,7 +7,7 @@ executables = [Executable("zerojudge-cli.py", base=base)]
 # packages = ["idna"]
 options = {
     'build_exe': {    
-        'packages':['bs4', 'getpass', 'lxml', 'webbrowser', 'requests', 'colorTable', 'queue', 'idna', 'sys'],
+        'packages':['bs4', 'getpass', 'lxml', 'webbrowser', 'requests', 'colorTable', 'queue', 'idna', 'sys', 'colorama'],
     },    
 }
 

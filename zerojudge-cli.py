@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys
+import colorama
 import requests
 from bs4 import BeautifulSoup
 import colorTable as cT
