@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import sys
 import requests
 from bs4 import BeautifulSoup
 import colorTable as cT
@@ -29,10 +30,10 @@ def inputTry(out):
         re=input(out)
     except EOFError:
         print()
-        exit(0)
+        sys.exit(0)
     except KeyboardInterrupt:
         print()
-        exit(1)
+        sys.exit(1)
     return re
 def Login():
     account=inputTry('Account: ')
@@ -40,10 +41,10 @@ def Login():
         pswd=getpass.getpass('Password: ')
     except EOFError:
         print()
-        exit(0)
+        sys.exit(0)
     except KeyboardInterrupt:
         print()
-        exit(1)
+        sys.exit(1)
     user['account']=account
     user['passwd']=pswd
     session.post(loginurl, user, headers=headers)
