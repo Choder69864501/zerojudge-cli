@@ -67,8 +67,17 @@ def List():
 
 
 def submitCode():
+    pre=[]
+    if len(pre) != 0:
+        print('Resend previous datå ?[Y/n]')
+        c=input()
+        if c=='' or c=='y' or c=='Y':
+            pass
+        else:
+            pass
     data = {}
     problem = inputTry('Problem: ')
+    pre.append(problem)
     while True:
         lang = inputTry(
             'Language (Default is cpp , or type \'list\' or \'l\' for help): ')
@@ -100,8 +109,10 @@ def submitCode():
                 cT.bcolors.FAIL +
                 'Unknow language' +
                 cT.bcolors.ENDC)
+        pre.append(lang)
     data['language'] = lang
     filename = inputTry('Code file name without extension: ')
+    pre.append(filename)
     codes = []
     try:
         data['code'] = open(filename + '.' + forma, "r").read()
