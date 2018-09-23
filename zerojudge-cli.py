@@ -27,6 +27,7 @@ Userurl = 'https://zerojudge.tw/UserStatistic'
 resurl = 'https://zerojudge.tw/Submissions'
 qurl = 'https://zerojudge.tw/ShowProblem?problemid='
 user = {'token': ''}
+pre={}
 purl = 'https://zerojudge.tw/Solution.api?action=SubmitCode&'
 session = requests.session()
 
@@ -67,17 +68,15 @@ def List():
 
 
 def submitCode():
-    pre=[]
-    if len(pre) != 0:
+    global pre
+    data = {}
+    if bool(pre):
         print('Resend previous datå ?[Y/n]')
         c=input()
         if c=='' or c=='y' or c=='Y':
-            pass
-        else:
-            pass
-    data = {}
+            session.post(purl, data=data, headers=headers) 
+            return None
     problem = inputTry('Problem: ')
-    pre.append(problem)
     while True:
         lang = inputTry(
             'Language (Default is cpp , or type \'list\' or \'l\' for help): ')
@@ -109,10 +108,8 @@ def submitCode():
                 cT.bcolors.FAIL +
                 'Unknow language' +
                 cT.bcolors.ENDC)
-        pre.append(lang)
     data['language'] = lang
     filename = inputTry('Code file name without extension: ')
-    pre.append(filename)
     codes = []
     try:
         data['code'] = open(filename + '.' + forma, "r").read()
@@ -125,6 +122,8 @@ def submitCode():
     data['problemid'] = problem
     data['contestid'] = 0
     session.post(purl, data=data, headers=headers)
+    pre=data
+    return None
 
 
 def Help():
