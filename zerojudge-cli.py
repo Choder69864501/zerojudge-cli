@@ -28,6 +28,8 @@ resurl = 'https://zerojudge.tw/Submissions'
 qurl = 'https://zerojudge.tw/ShowProblem?problemid='
 user = {'token': ''}
 pre={}
+filename=''
+forma=''
 purl = 'https://zerojudge.tw/Solution.api?action=SubmitCode&'
 session = requests.session()
 
@@ -69,11 +71,21 @@ def List():
 
 def submitCode():
     global pre
+    global filename
+    global forma
     data = {}
     if bool(pre):
         print('Resend previous datå ?[Y/n]')
         c=input()
         if c=='' or c=='y' or c=='Y':
+            try:
+                data['code'] = open(filename + '.' + forma, "r").read()
+            except (OSError, IOError) as e:
+                print(
+                    cT.bcolors.BOLD +
+                    cT.bcolors.FAIL +
+                    'File not found !' +
+                    cT.bcolors.ENDC)
             session.post(purl, data=data, headers=headers) 
             return None
     problem = inputTry('Problem: ')
@@ -110,7 +122,6 @@ def submitCode():
                 cT.bcolors.ENDC)
     data['language'] = lang
     filename = inputTry('Code file name without extension: ')
-    codes = []
     try:
         data['code'] = open(filename + '.' + forma, "r").read()
     except (OSError, IOError) as e:
