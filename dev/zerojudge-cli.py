@@ -21,7 +21,6 @@ print(cT.bcolors.CYAN + zerjudgecli + cT.bcolors.ENDC)
 
 headers = {}
 headers['User-Agent'] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0"
-loginurl = 'https://zerojudge.tw/Login'
 logouturl = 'https://zerojudge.tw/Logout'
 Userurl = 'https://zerojudge.tw/UserStatistic'
 resurl = 'https://zerojudge.tw/Submissions'
@@ -47,18 +46,7 @@ def inputTry(out):
 
 
 def Login():
-    account = inputTry('Account: ')
-    try:
-        pswd = getpass.getpass('Password: ')
-    except EOFError:
-        print()
-        sys.exit(0)
-    except KeyboardInterrupt:
-        print()
-        sys.exit(1)
-    user['account'] = account
-    user['passwd'] = pswd
-    session.post(loginurl, user, headers=headers)
+    import qtweb
     if dashBoard(1, None) == 1:
         return 1
     return 0
