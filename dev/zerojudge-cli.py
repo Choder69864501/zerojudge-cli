@@ -46,11 +46,7 @@ def inputTry(out):
 
 
 def Login():
-    import qtweb
-    if dashBoard(1, None) == 1:
-        return 1
     return 0
-
 
 def List():
     print('Supported languages:')
